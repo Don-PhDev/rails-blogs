@@ -10,8 +10,8 @@
       User Functionality
     </a>
     <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-      <li><a class="dropdown-item" href="#">Action</a></li>
-      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li class="dropdown-item"><%= current_user.username %></li>
+      <li><%= link_to "Profile Settings", edit_user_registration_path, class: "dropdown-item" %></li>
       <li><hr class="dropdown-divider"></li>
       <li>
         <%= link_to "Log Out",
