@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Post.delete_all
+Blog.delete_all
 
 30.times do |x|
-  Post.create(title: "Title no: #{x}", body: "This is a test body for #{x}")
+  Blog.create(title: "Title no: #{x}", body: "This is a test body for #{x}")
 end
