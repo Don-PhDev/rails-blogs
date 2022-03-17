@@ -8,7 +8,7 @@
       <tr>
         <th>Title</th>
         <th>Body</th>
-        <th>Image</th>
+        <th>Images</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -18,7 +18,13 @@
         <tr>
           <td><%= blog.title %></td>
           <td><%= blog.body.truncate(43) %></td>
-          <td><%= image_tag blog.image, width: "150px" if blog.has_image? %></td>
+          <td>
+            <% if blog.has_image? %>
+              <% blog.images.each do |image| %>
+                <%= image_tag image, class: "w100 h100 img-cover rounded" %>
+              <% end %>
+            <% end %>
+          </td>
           <td><%= link_to 'Show', blog %></td>
         </tr>
       <% end %>

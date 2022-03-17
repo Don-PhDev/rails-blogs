@@ -2,7 +2,13 @@
   <h3><%= @blog.title %></h3>
 
   <p><%= pluralize(@blog.views, "view") %></p>
-  <p><%= image_tag @blog.image, width: "400px" if @blog.has_image? %></p>
+  <p>
+  <% if @blog.has_image? %>
+    <% @blog.images.each do |image| %>
+      <%= image_tag image, class: "w200 h200 img-cover" %>
+    <% end %>
+  <% end %>
+  </p>
   <p><%= @blog.body %></p>
 
   <%= link_to 'Edit', edit_blog_path(@blog) %> |
