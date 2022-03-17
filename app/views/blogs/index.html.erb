@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Blogs: <%= Blog.count %></h1>
 
-  <%= link_to 'New Blog', new_blog_path, class: "btn btn-primary mb-2" %>
+  <%= link_to 'New Blog', new_blog_path, class: "btn btn-primary mb-2" if current_user %>
 
   <table class="table table-bordered table-hover">
     <thead class="table-light">
