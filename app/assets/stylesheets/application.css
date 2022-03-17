@@ -33,3 +33,8 @@
 .h200 {
   height: 12.5rem;
 }
+
+.opacity-80 {
+  font-size: 80%;
+  opacity: 0.80;
+}

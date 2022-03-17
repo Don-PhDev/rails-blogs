@@ -9,5 +9,9 @@
 Blog.delete_all
 
 30.times do |x|
-  Blog.create(title: "Title no: #{x}", body: "This is a test body for #{x}")
+  Blog.create(
+    title: "Title no: #{x}",
+    body: "This is a test body for #{x}",
+    user_id: User.first.id
+  )
 end
