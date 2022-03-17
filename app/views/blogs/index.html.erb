@@ -1,0 +1,35 @@
+<div class="container">
+  <h1>Blogs: <%= Blog.count %></h1>
+
+  <%= link_to 'New Blog', new_blog_path, class: "btn btn-primary mb-2" %>
+
+  <table class="table table-bordered table-hover">
+    <thead class="table-light">
+      <tr>
+        <th>Title</th>
+        <th>Body</th>
+        <th colspan="3">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @blogs.each do |blog| %>
+        <tr>
+          <td><%= blog.title %></td>
+          <td><%= blog.body.truncate(43) %></td>
+          <td><%= link_to 'Show', blog %></td>
+          <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
+          <td>
+            <%= link_to 'Destroy',
+              blog,
+              method: :delete,
+              data: {
+                confirm: "Press OK to delete blog: #{blog.title}"
+              }
+            %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
