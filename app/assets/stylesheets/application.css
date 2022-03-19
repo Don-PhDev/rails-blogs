@@ -14,6 +14,17 @@
  *= require_self
  */
 
+.text-decor-none {
+  text-decoration: none;
+}
+
+span.ver-divider {
+  border: thin solid #505050;
+  margin-left: 0.25rem;
+  font-size: 0.875rem;
+  vertical-align: middle;
+}
+
 .img-cover {
   object-fit: cover;
 }
