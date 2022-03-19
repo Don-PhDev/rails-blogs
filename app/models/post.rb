@@ -1,4 +1,4 @@
-class Blog < ApplicationRecord
+class Post < ApplicationRecord
   validates :title, :body, presence: true
 
   has_many_attached :images

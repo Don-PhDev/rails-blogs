@@ -1,7 +1,7 @@
 <div class="container">
-  <h1>Blogs: <%= Blog.count %></h1>
+  <h1>Posts: <%= Post.count %></h1>
 
-  <%= link_to 'New Blog', new_blog_path, class: "btn btn-primary mb-2" if current_user %>
+  <%= link_to 'Create Post', new_post_path, class: "btn btn-primary mb-2" if current_user %>
 
   <table class="table table-bordered table-hover">
     <thead class="table-light">
@@ -14,18 +14,18 @@
     </thead>
 
     <tbody>
-      <% @blogs.each do |blog| %>
+      <% @posts.each do |post| %>
         <tr>
-          <td><%= blog.title %></td>
-          <td><%= blog.body.truncate(43) %></td>
+          <td><%= post.title %></td>
+          <td><%= post.body.truncate(43) %></td>
           <td>
-            <% if blog.has_image? %>
-              <% blog.images.each do |image| %>
+            <% if post.has_image? %>
+              <% post.images.each do |image| %>
                 <%= image_tag image, class: "w100 h100 img-cover rounded" %>
               <% end %>
             <% end %>
           </td>
-          <td><%= link_to 'Show', blog %></td>
+          <td><%= link_to 'Show', post %></td>
         </tr>
       <% end %>
     </tbody>

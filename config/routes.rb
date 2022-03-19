@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     sessions: "users/sessions",
     registrations: "users/registrations"
   }
-  resources :blogs
+  resources :posts
   get "home", to: "pages#home"
   get "about", to: "pages#about"
 

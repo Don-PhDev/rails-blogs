@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Blog.delete_all
+Post.delete_all
 User.delete_all
 User.create!(
   email: "don@gmail.com",
@@ -16,7 +16,7 @@ User.create!(
 )
 
 30.times do |x|
-  Blog.create(
+  Post.create(
     title: "Title no: #{x}",
     body: "This is a test body for #{x}",
     user_id: User.first.id

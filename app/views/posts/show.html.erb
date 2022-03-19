@@ -1,0 +1,24 @@
+<div class="container">
+  <h3><%= @post.title %></h3>
+  <h6 class="mb-4 opacity-80">Post by: <%= @post.user.username %></h6>
+
+  <p><%= pluralize(@post.views, "view") %></p>
+  <p>
+  <% if @post.has_image? %>
+    <% @post.images.each do |image| %>
+      <%= image_tag image, class: "w200 h200 img-cover" %>
+    <% end %>
+  <% end %>
+  </p>
+  <p><%= @post.body %></p>
+
+  <%= link_to 'Edit', edit_post_path(@post) %> |
+  <%= link_to 'Delete',
+    @post,
+    method: :delete,
+    data: {
+      confirm: "Press OK to delete post: #{@post.title}"
+    }
+  %> |
+  <%= link_to 'Back', posts_path %>
+</div>

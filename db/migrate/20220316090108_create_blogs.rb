@@ -1,6 +1,6 @@
 class CreateBlogs < ActiveRecord::Migration[6.1]
   def change
-    create_table :blogs do |t|
+    create_table :posts do |t|
       t.string :title, null: false
       t.text :body, null: false
       t.integer :views, default: 0
