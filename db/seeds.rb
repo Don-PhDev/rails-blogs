@@ -7,6 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Blog.delete_all
+User.delete_all
+User.create!(
+  email: "don@gmail.com",
+  name: "Don Forrest",
+  password: "password",
+  password_confirmation: "password"
+)
 
 30.times do |x|
   Blog.create(
