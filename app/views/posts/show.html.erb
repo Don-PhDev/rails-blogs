@@ -1,21 +1,6 @@
 <div class="container">
-  <h3><%= @post.title %></h3>
-  <h6 class="mb-4 opacity-80">Post by: <%= @post.user.username %></h6>
-
-  <p><%= pluralize(@post.views, "view") %></p>
-  <p>
-  <% if @post.has_image? %>
-    <% @post.images.each do |image| %>
-      <%= image_tag image, class: "w200 h200 img-cover" %>
-    <% end %>
-  <% end %>
-  </p>
-  <p><%= @post.body %></p>
-
-  <%= link_to 'Edit',
-    edit_post_path(@post),
-    class: "text-decor-none"
-  %><span class="ver-divider"></span>
+  <h3 class="font-monospace mb-3 fw-bold"><%= @post.title %> <span class="align-middle text-muted fs-6 fw-normal">(<%= pluralize(@post.views, "view") %>)</span></h3>
+  <blockquote class="blockquote-footer"><%= @post.user.username %></blockquote>
 
   <%= link_to 'Delete',
     @post,
@@ -23,7 +8,30 @@
     data: {
       confirm: "Press OK to delete post: #{@post.title}"
     },
-    class: "text-decor-none"
-  %><span class="ver-divider"></span>
-  <%= link_to 'Back', posts_path, class: "text-decor-none" %>
+    class: "text-decor-none ms-2 float-end"
+  %>
+
+  <%= link_to 'Edit',
+    edit_post_path(@post),
+    class: "text-decor-none float-end"
+  %>
+
+  <p>
+    <% if @post.has_image? %>
+      <% @post.images.each do |image| %>
+        <%= image_tag image, class: "w200 h200 img-cover" %>
+      <% end %>
+    <% end %>
+  </p>
+  <p class="fs-5"><%= @post.body %></p>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Comments:</h5>
+      <%= render "comments/form" %>
+      <p class="card-text"><%= render @post.comments.includes(:user).order(created_at: :desc) %></p>
+    </div>
+  </div>
+
+  <%= link_to 'Back', posts_path, class: "text-decor-none mt-4 float-end" %>
 </div>
