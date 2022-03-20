@@ -1,0 +1,7 @@
+<%= form_with(model: [@post, @post.comments.build]) do |f| %>
+  <div class="form-group mb-2">
+    <%= f.label 'New comment' %>
+    <%= f.text_area :content, class: 'form-control' %>
+  </div>
+  <%= f.submit 'Comment', class: 'btn btn-primary' %>
+<% end %>

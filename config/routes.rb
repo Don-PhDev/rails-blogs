@@ -3,7 +3,11 @@ Rails.application.routes.draw do
     sessions: "users/sessions",
     registrations: "users/registrations"
   }
-  resources :posts
+
+  resources :posts do
+    resources :comments, except: [:index]
+  end
+
   get "home", to: "pages#home"
   get "about", to: "pages#about"
 
