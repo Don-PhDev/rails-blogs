@@ -2,19 +2,21 @@
   <h3 class="font-monospace mb-3 fw-bold"><%= @post.title %> <span class="align-middle text-muted fs-6 fw-normal">(<%= pluralize(@post.views, "view") %>)</span></h3>
   <blockquote class="blockquote-footer"><%= @post.user.username %></blockquote>
 
-  <%= link_to 'Delete',
-    @post,
-    method: :delete,
-    data: {
-      confirm: "Press OK to delete post: #{@post.title}"
-    },
-    class: "text-decor-none ms-2 float-end"
-  %>
+  <% if current_user == @post.user %>
+    <%= link_to 'Delete',
+      @post,
+      method: :delete,
+      data: {
+        confirm: "Press OK to delete post: #{@post.title}"
+      },
+      class: "text-decor-none ms-2 float-end"
+    %>
 
-  <%= link_to 'Edit',
-    edit_post_path(@post),
-    class: "text-decor-none float-end"
-  %>
+    <%= link_to 'Edit',
+      edit_post_path(@post),
+      class: "text-decor-none float-end"
+    %>
+  <% end %>
 
   <p>
     <% if @post.has_image? %>
