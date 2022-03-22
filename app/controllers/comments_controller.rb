@@ -3,16 +3,45 @@ class CommentsController < ApplicationController
   before_action :set_post
 
   def create
-    comment = @post.comments.new(comment_params)
-    comment.user = current_user
+    @comment = @post.comments.create(comment_params)
+    @comment.user = current_user
 
-    if comment.save
+    if @comment.save
       flash[:notice] = "Your comment is successfully posted"
       redirect_to post_path(@post)
     else
-      flash[:alert] = "Comment failed to post: #{comment.errors.full_messages.to_sentence}"
+      flash[:alert] = "Comment failed to post: #{@comment.errors.full_messages.to_sentence}"
       redirect_to post_path(@post)
     end
+  end
+
+  def update
+    @comment = @post.comments.find(params[:id])
+
+    respond_to do |format|
+      if @comment.update(comment_params)
+        format.html { redirect_to post_url(@post), notice: "Comment has been updated" }
+      else
+        format.html { redirect_to post_url(@post), alert: "Comment update failed" }
+      end
+    redirect_to post_path(@post)
+    end
+  end
+
+  def destroy
+    @comment = @post.comments.find(params[:id])
+    @comment.destroy
+
+    if @comment.destroy
+      flash[:notice] = "Comment has been deleted"
+      redirect_to post_path(@post)
+    else
+      flash[:alert] = "Comment deletion failed: #{@comment.errors.full_messages.to_sentence}"
+      redirect_to post_path(@post)
+    end
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "Comment was already deleted"
+    redirect_to post_path(@post)
   end
 
   private
@@ -22,6 +51,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment) .permit(:content, :parent_id)
   end
 end
