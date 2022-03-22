@@ -24,13 +24,6 @@ span.hor-divider {
    border-bottom: 1.8px solid #e0e0e0;
 }
 
-span.ver-divider {
-  border-left: 2px solid #505050;
-  margin-left: 0.25rem;
-  font-size: 0.875rem;
-  vertical-align: middle;
-}
-
 .img-cover {
   object-fit: cover;
 }
@@ -49,9 +42,4 @@ span.ver-divider {
 
 .h200 {
   height: 12.5rem;
-}
-
-.opacity-80 {
-  font-size: 80%;
-  opacity: 0.80;
 }
