@@ -17,11 +17,14 @@
       <% @posts.each do |post| %>
         <tr>
           <td><%= post.title %></td>
-          <td><%= post.body.truncate(43) %></td>
+          <td><%= post.body.truncate(56) %></td>
           <td>
             <% if post.has_image? %>
-              <% post.images.each do |image| %>
+              <% post.images.first(4).each do |image| %>
                 <%= image_tag image, class: "w100 h100 img-cover rounded" %>
+              <% end %>
+              <% if post.images.count > 4 %>
+                <span class="excess-images-plus-icon">+<%= post.images.count - 4 %></span>
               <% end %>
             <% end %>
           </td>
