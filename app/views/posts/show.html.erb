@@ -28,8 +28,8 @@
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">Comments:</h5>
-      <%= render "comments/form" %>
-      <p class="card-text"><%= render @post.comments.includes(:user).order(created_at: :desc) %></p>
+      <%= render "comments/form", post: @post, comment: @post.comments.build %>
+      <p class="card-text"><%= render @post.comments.where(parent_id: nil).includes(:user).order(created_at: :desc) %></p>
     </div>
   </div>
 

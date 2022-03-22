@@ -1,5 +1,49 @@
 <article class="mt-3">
-  <p><%= comment.content %></p>
-  <small>by <%= comment.user.username %></small>
+  <p><%= comment.content %>
+    <div class="btn-group float-end text-decor-none">
+      <% if current_user == comment.user %>
+        <%= link_to "Edit", nil, class: "text-decor-none" %>
+      <% end %>
+
+      <% if current_user == @post.user || current_user == comment.user %>
+        <%= link_to "Delete",
+          post_comment_path(@post, comment),
+          method: :delete,
+          class: "text-decor-none ms-2"
+        %>
+      <% end %>
+      <%# <div id="edit-form-<%= comment.id %1>" class="d-none"> %>
+      <%#   <%= render "comments/form", post: @post, comment: comment %1> %>
+      <%# </div> %>
+    </div>
+  </p>
+
+  <small>
+    <%= comment.user.username %>
+    <span class="fw-lighter"><%= comment.commented_time_ago %></span>
+  </small>
+
+  <%= link_to "reply",
+    new_post_comment_path(@post),
+    class: "comment-reply-btn text-decor-none d-block"
+  %>
+
+  <div class="comment-form">
+    <%= render "comments/form", locals: { post: comment.post, parent: comment } %>
+  </div>
+
   <span class="hor-divider"></span>
+
+  <div class="reply">
+    <%= render comment.comments %>
+  </div>
 </article>
+
+<script>
+  document.querySelectorAll(".comment-reply-btn").forEach((el) => {
+    el.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      el.nextElementSibling.style = "display: block"
+    })
+  })
+</script>
